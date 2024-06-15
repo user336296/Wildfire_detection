@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from telegram import Bot
+import telebot
 import threading
 
 Alarm_Status = False
@@ -11,8 +11,9 @@ Fire_Reported = 0
 TOKEN = '6865981280:AAEzXgVAt43joQ-CIcw1oKSCne11mW279mo'
 CHAT_ID = '2012650197'  # ID бота
 
-bot = Bot(token=TOKEN)
+bot = telebot.TeleBot(TOKEN, parse_mode=None)
 
+@bot.message_handler(commands=['start', 'help'])
 def send_telegram_message(message):
     bot.send_message(chat_id=CHAT_ID, text=message)
 
